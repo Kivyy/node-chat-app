@@ -13,8 +13,13 @@ app.use(express.static(publicPath));
 io.on('connection', (socket) => {
   console.log('New user connected');
 
-  socket.emit('newEmail', {
-    
+  socket.on('createMessage', (message) => {
+    console.log('create message: ', message);
+  })
+
+  socket.emit('newMessage', {
+    from: 'Linda',
+    text: 'Love you too.'
   })
 
   socket.on('disconnect' , () => {
